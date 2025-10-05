@@ -29,38 +29,55 @@ VALUES
 (1, 'Kimia', 88),
 (1, 'Biologi', 95),
 (1, 'Ekonomi', 84),
-
 (2, 'Matematika', 79),
 (2, 'Bahasa Inggris', 85),
 (2, 'Fisika', 80),
 (2, 'Kimia', 91),
 (2, 'Biologi', 87),
 (2, 'Ekonomi', 90),
-
 (3, 'Matematika', 88),
 (3, 'Bahasa Inggris', 77),
 (3, 'Fisika', 83),
 (3, 'Kimia', 90),
 (3, 'Biologi', 92),
 (3, 'Ekonomi', 81),
-
 (4, 'Matematika', 75),
 (4, 'Bahasa Inggris', 89),
 (4, 'Fisika', 78),
 (4, 'Kimia', 82),
 (4, 'Biologi', 85),
 (4, 'Ekonomi', 80),
-
 (5, 'Matematika', 90),
 (5, 'Bahasa Inggris', 88),
 (5, 'Fisika', 91),
 (5, 'Kimia', 87),
 (5, 'Biologi', 93),
 (5, 'Ekonomi', 89),
-
 (6, 'Matematika', 84),
 (6, 'Bahasa Inggris', 86),
 (6, 'Fisika', 79),
 (6, 'Kimia', 88),
 (6, 'Biologi', 90),
 (6, 'Ekonomi', 85);
+
+--menampilkan semua siswa
+SELECT * FROM siswa;
+
+--Menampilkan nama siswa dengan jurusan IPA
+SELECT nama, jurusan FROM siswa WHERE jurusan = 'IPA';
+
+--Menampilkan nilai rata-rata tiap siswa menggunakan join dan group by
+SELECT s.id, s.nama, AVG(n.nilai) AS rata_nilai
+FROM siswa s
+JOIN nilai n ON s.id = n.siswa_id
+GROUP BY s.id, s.nama
+ORDER BY s.id;
+
+--Update jurusan salah satu siswa
+UPDATE siswa
+SET jurusan = 'Teknik Komputer'
+WHERE id = 3;
+
+-- hapus satu data nilai siswa 
+DELETE FROM nilai
+WHERE siswa_id = 2 AND mata_pelajaran = 'Ekonomi';
